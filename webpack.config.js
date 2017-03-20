@@ -1,5 +1,6 @@
 module.exports = {
-  entry: [ './scripts/app.js' ],
+  entry: './scripts/app.js',
+  devtool: 'source-map',
   output: {
     path: __dirname + '/build',
     filename: 'bundle.js'
@@ -12,7 +13,7 @@ module.exports = {
         loader: 'babel'
       }, {
         test: /\.scss$/,
-        loader: 'style!css!autoprefixer?browsers=last 2 version!sass'
+        loader: 'style!css!postcss!sass'
       }, {
         test: /\.css$/,
         loader: 'style!css!autoprefixer?browsers=last 2 version'
@@ -35,6 +36,12 @@ module.exports = {
         test: /\.(json)|(geojson)$/,
         loader: 'json'
       },
+    ]
+  },
+  postcss: function () {
+    return [
+      require('precss'),
+      require('autoprefixer')
     ]
   }
 }

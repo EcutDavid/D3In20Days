@@ -15,7 +15,7 @@ module.exports = {
         loader: 'babel'
       }, {
         test: /\.scss$/,
-        loader: 'style!css!autoprefixer?browsers=last 2 version!sass'
+        loader: 'style!css!postcss!sass'
       }, {
         test: /\.css$/,
         loader: 'style!css!autoprefixer?browsers=last 2 version'
@@ -38,6 +38,12 @@ module.exports = {
         test: /\.(json)|(geojson)$/,
         loader: 'json'
       },
+    ]
+  },
+  postcss: function () {
+    return [
+      require('precss'),
+      require('autoprefixer')
     ]
   },
   plugins: [
